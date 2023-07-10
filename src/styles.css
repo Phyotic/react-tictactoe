@@ -1,0 +1,17 @@
+:root {
+    --midnight-green: #114b5f;
+    --sea-green: #1a936f;
+    --celadon: #88d498;
+    --tea-green: #c6dabf;
+    --parchment: #f3e9d2;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Caprasimo", sans-serif;
+}

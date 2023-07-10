@@ -15,3 +15,113 @@
 body {
     font-family: "Caprasimo", sans-serif;
 }
+
+/* == Utility classes == */
+
+/* Nav Component */
+#nav {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    border-bottom-left-radius: 100px;
+    border-bottom-right-radius: 100px;
+
+    border: 1px solid red; /* TODO */
+}
+
+#title {
+    width: 50%;
+    float: left;
+    text-indent: 5%;
+    font-size: 3rem;
+    padding: 15px;
+}
+
+#button-container {
+    width: 50%;
+}
+
+#reset-button {
+    position: relative;
+    width: clamp(130px, 30%, 300px);
+    float: right;
+    right: 5%;
+
+    padding: 10px;
+    margin: 20px;
+    border-bottom-right-radius: 100px;
+}
+
+/* Board Component */
+#board {
+    height: 70%;
+    width: 70%;
+    margin: auto;
+    height: 70%;
+    width: 70%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    display: flex;
+    flex-wrap: wrap;
+    padding: 5vw;
+
+    border-radius: 50px;
+
+    border: 3px solid yellow;
+}
+
+/* Cell Component */
+.cell {
+    flex: 1 1 33%;
+    max-width: 33.33%;
+    max-height: 33.33%;
+
+    border: 1px solid green;
+}
+
+.cell-image {
+    margin: auto;
+    width: 100%;
+    height: 100%;
+    padding: 5%;
+}
+
+/* Scoreboard Component */
+#score {
+    border: 1px solid blue; /* TODO */
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    border-top-left-radius: 100px;
+    border-top-right-radius: 100px;
+}
+
+.container {
+    float: left;
+    padding: 20px 20px 20px 50px;
+    font-size: 3rem;
+    width: 50%;
+}
+
+#player-container {
+    border-right: 5px solid black;
+}
+
+#bot-container {
+    border-left: 5px solid black;
+}
+
+#player-score {
+    float: right;
+    padding-right: 5%;
+}
+
+#bot-score {
+    float: right;
+    padding-right: 5%;
+}

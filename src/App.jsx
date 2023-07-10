@@ -1,7 +1,17 @@
+import Nav from "./components/Nav.jsx";
+import Board from "./components/Board.jsx";
+import Scoreboard from "./components/Scoreboard.jsx";
+
 function App() {
     return (
         <>
-            <p>React Tic-Tac-Toe App</p>
+            <nav>
+                <Nav />
+            </nav>
+            <Board />
+            <footer>
+                <Scoreboard />
+            </footer>
         </>
     );
 }

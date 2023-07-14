@@ -7,7 +7,9 @@ export default function GameOver({ winner, newGame }) {
             <section className="game-over-content">
                 <p>Game Over</p>
                 <p>{winner === GameStatus.DRAW ? "Draw!" : winner + " won"}</p>
-                <button onClick={() => newGame()}>New Game</button>
+                <button id="new-game-btn" className="pulsing" onClick={() => newGame()}>
+                    New Game
+                </button>
             </section>
         </>
     );

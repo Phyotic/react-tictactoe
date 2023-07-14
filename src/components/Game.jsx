@@ -5,8 +5,8 @@ import GameOver from "./GameOver.jsx";
 import Nav from "./Nav.jsx";
 
 export const GameStatus = {
-    PLAYER_WON: "playerWon",
-    OPPONENT_WON: "opponentWon",
+    PLAYER_WON: "You",
+    OPPONENT_WON: "Opponent",
     DRAW: "draw",
     ONGOING: "gameOngoing",
 };

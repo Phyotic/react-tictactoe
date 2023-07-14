@@ -20,7 +20,7 @@ export default function Cell({ id, setCell, marker, markerTypes }) {
             }}
         >
             {image ? (
-                <img className="cell-image" src={image}></img>
+                <img className="cell-image drop" src={image}></img>
             ) : (
                 <div className="cell-image blank-image"></div>
             )}

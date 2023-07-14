@@ -14,4 +14,254 @@
 
 body {
     font-family: "Caprasimo", sans-serif;
+    background-color: black;
+}
+
+/* == Utility classes == */
+
+@keyframes pulse {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.3;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes highlighting {
+    from {
+        background-color: initial;
+    }
+
+    to {
+        background-color: var(--tea-green);
+    }
+}
+
+@keyframes drop {
+    from {
+        opacity: 0;
+        transform: scale(3);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.pulsing {
+    animation: pulse 1s infinite forwards;
+}
+
+.highlight {
+    animation: highlighting 1s infinite;
+}
+
+.drop {
+    animation: drop 1s;
+}
+
+/* Nav Component */
+#nav {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    border-bottom-left-radius: 100px;
+    border-bottom-right-radius: 100px;
+
+    color: var(--midnight-green);
+    background-color: var(--celadon);
+    border: 10px solid var(--midnight-green);
+    box-shadow: 0px 10px 30px var(--sea-green);
+}
+
+#title {
+    width: 50%;
+    float: left;
+    text-indent: 5%;
+    font-size: 3rem;
+    padding: 15px;
+}
+
+#button-container {
+    width: 50%;
+}
+
+#reset-button {
+    position: relative;
+    width: clamp(130px, 30%, 300px);
+    float: right;
+    right: 5%;
+    padding: 10px;
+    margin: 20px;
+    border-bottom-right-radius: 100px;
+
+    font-family: "Caprasimo", sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--midnight-green);
+    outline: 5px solid var(--midnight-green);
+    background-color: var(--celadon);
+}
+
+#reset-button:hover {
+    background-color: var(--tea-green);
+    cursor: pointer;
+}
+
+/* Board Component */
+#board {
+    height: 70%;
+    width: 70%;
+    margin: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    display: flex;
+    flex-wrap: wrap;
+    padding: 5vw;
+
+    border-radius: 50px;
+
+    background-color: var(--celadon);
+    border: 20px solid var(--midnight-green);
+
+    box-shadow: 0px 0px 100px var(--sea-green);
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 33.33%;
+}
+
+/* Cell Component */
+.cell {
+    display: flex;
+    flex: 1 1 100%;
+    max-width: 33.33%;
+    max-height: 100%;
+    background-color: var(--midnight-green);
+    border: 10px solid var(--midnight-green);
+}
+
+.cell-image {
+    margin: auto;
+    width: 100%;
+    height: 100%;
+    padding: 5%;
+}
+
+.cell-image:hover {
+    cursor: default;
+}
+
+.blank-image {
+    background-color: var(--sea-green);
+}
+
+.blank-image:hover {
+    background-color: var(--parchment);
+    cursor: pointer;
+}
+
+/* Scoreboard Component */
+#score {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    border-top-left-radius: 100px;
+    border-top-right-radius: 100px;
+    z-index: 2;
+    background-color: var(--celadon);
+    border: 10px solid var(--midnight-green);
+    box-shadow: 0px 0px 40px var(--sea-green);
+    overflow: hidden;
+}
+
+.container {
+    float: left;
+    padding: 20px 20px 20px 50px;
+    font-size: 3rem;
+    width: 50%;
+}
+
+#player-container {
+    border-right: 5px solid var(--midnight-green);
+}
+
+#bot-container {
+    border-left: 5px solid var(--midnight-green);
+}
+
+#player-score {
+    float: right;
+    padding-right: 5%;
+}
+
+#bot-score {
+    float: right;
+    padding-right: 5%;
+}
+
+/* GameOver Component */
+.game-over-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    background-color: black;
+    opacity: 0.8;
+    z-index: 1;
+}
+
+.game-over-content {
+    position: relative;
+    margin: auto;
+    width: 70%;
+    height: 100%;
+    background-color: var(--celadon);
+    z-index: 2;
+    padding-top: 3%;
+    padding-bottom: 3%;
+
+    text-align: center;
+    align-items: center;
+
+    border-radius: 10px;
+    border: 20px solid var(--midnight-green);
+}
+
+.game-over-content p {
+    padding-bottom: 3%;
+    color: var(--midnight-green);
+    font-size: 3rem;
+}
+
+#new-game-btn {
+    font-family: "Caprasimo", sans-serif;
+    font-size: 2rem;
+    padding: 10px 30px;
+    color: var(--midnight-green);
+    background-color: var(--celadon);
+    border: 10px solid var(--midnight-green);
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+#new-game-btn:hover {
+    background-color: var(--tea-green);
 }

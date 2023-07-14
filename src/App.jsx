@@ -1,7 +1,9 @@
+import Game from "./components/Game.jsx";
+
 function App() {
     return (
         <>
-            <p>React Tic-Tac-Toe App</p>
+            <Game />
         </>
     );
 }

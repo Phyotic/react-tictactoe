@@ -9,9 +9,6 @@ function App() {
                 <Nav />
             </nav>
             <Board />
-            <footer>
-                <Scoreboard />
-            </footer>
         </>
     );
 }

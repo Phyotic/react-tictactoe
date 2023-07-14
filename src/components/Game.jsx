@@ -1,9 +1,10 @@
-import { useEffect, useState, memo } from "react";
+import { useEffect, useState } from "react";
 import Cell from "./Cell.jsx";
 import Scoreboard from "./Scoreboard.jsx";
 import GameOver from "./GameOver.jsx";
+import Nav from "./Nav.jsx";
 
-export const BoardStatus = {
+export const GameStatus = {
     PLAYER_WON: "playerWon",
     OPPONENT_WON: "opponentWon",
     DRAW: "draw",
@@ -23,6 +24,11 @@ export default function Board() {
     };
 
     const [score, setScore] = useState({ x: 0, o: 0 });
+
+    function resetScore() {
+        setScore({ x: 0, o: 0 });
+        newGame();
+    }
 
     const [cellState, setCellState] = useState({
         1: Marker.EMPTY,
@@ -78,22 +84,23 @@ export default function Board() {
     let gameOver;
 
     useEffect(() => {
-        if (winner === BoardStatus.PLAYER_WON) {
+        if (winner === GameStatus.PLAYER_WON) {
             setScore({ x: score.x + 1, o: score.o });
-        } else if (winner === BoardStatus.OPPONENT_WON) {
+        } else if (winner === GameStatus.OPPONENT_WON) {
             setScore({ x: score.x, o: score.o + 1 });
         }
     }, [cellState]);
 
-    if (winner != BoardStatus.ONGOING) {
-        gameOver = (
-            <GameOver winner={winner} newGame={newGame} boardStatus={BoardStatus} />
-        );
+    if (winner != GameStatus.ONGOING) {
+        gameOver = <GameOver winner={winner} newGame={newGame} gameStatus={GameStatus} />;
     }
 
     return (
         <>
-            {winner !== BoardStatus.ONGOING && gameOver}
+            <nav>
+                <Nav resetScore={resetScore} />
+            </nav>
+            {winner !== GameStatus.ONGOING && gameOver}
             <section id="board">
                 <div className="row">
                     <Cell
@@ -190,7 +197,7 @@ function checkWon(cellState) {
     }
 
     if (drawState) {
-        return BoardStatus.DRAW;
+        return GameStatus.DRAW;
     } else {
         let playerWon = false;
         let opponentWon = false;
@@ -219,11 +226,11 @@ function checkWon(cellState) {
         }
 
         if (playerWon) {
-            return BoardStatus.PLAYER_WON;
+            return GameStatus.PLAYER_WON;
         } else if (opponentWon) {
-            return BoardStatus.OPPONENT_WON;
+            return GameStatus.OPPONENT_WON;
         } else {
-            return BoardStatus.ONGOING;
+            return GameStatus.ONGOING;
         }
     }
 }

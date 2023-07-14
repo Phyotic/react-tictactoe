@@ -1,14 +1,9 @@
-import Nav from "./components/Nav.jsx";
-import Board from "./components/Board.jsx";
-import Scoreboard from "./components/Scoreboard.jsx";
+import Game from "./components/Game.jsx";
 
 function App() {
     return (
         <>
-            <nav>
-                <Nav />
-            </nav>
-            <Board />
+            <Game />
         </>
     );
 }

@@ -1,13 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState, memo } from "react";
 import Cell from "./Cell.jsx";
 import Scoreboard from "./Scoreboard.jsx";
 import GameOver from "./GameOver.jsx";
-
-const Marker = {
-    X: "x",
-    O: "o",
-    EMPTY: "none",
-};
 
 export const BoardStatus = {
     PLAYER_WON: "playerWon",
@@ -16,11 +10,19 @@ export const BoardStatus = {
     ONGOING: "gameOngoing",
 };
 
+const Marker = {
+    X: "x",
+    O: "o",
+    EMPTY: "none",
+};
+
 export default function Board() {
     const [isPlayerTurn, setPlayerTurn] = useState(true);
     const changeTurns = (currentTurn) => {
         setPlayerTurn(!currentTurn);
     };
+
+    const [score, setScore] = useState({ x: 0, o: 0 });
 
     const [cellState, setCellState] = useState({
         1: Marker.EMPTY,
@@ -35,8 +37,6 @@ export default function Board() {
     });
 
     function setCell(id) {
-        console.log("SetCell called: " + id);
-
         setCellState((prevState) => {
             if (prevState[id] === Marker.EMPTY) {
                 let newMarker;
@@ -77,7 +77,13 @@ export default function Board() {
     const winner = checkWon(cellState);
     let gameOver;
 
-    console.log("Winner: " + winner);
+    useEffect(() => {
+        if (winner === BoardStatus.PLAYER_WON) {
+            setScore({ x: score.x + 1, o: score.o });
+        } else if (winner === BoardStatus.OPPONENT_WON) {
+            setScore({ x: score.x, o: score.o + 1 });
+        }
+    }, [cellState]);
 
     if (winner != BoardStatus.ONGOING) {
         gameOver = (
@@ -159,7 +165,7 @@ export default function Board() {
                     />
                 </div>
             </section>
-            <Scoreboard isPlayerTurn={isPlayerTurn} setPlayerTurn={changeTurns} />
+            <Scoreboard isPlayerTurn={isPlayerTurn} score={score} />
         </>
     );
 }
@@ -172,7 +178,6 @@ function checkWon(cellState) {
     let drawState = true;
 
     for (const property in cellState) {
-        console.log(property);
         if (cellState[property] === Marker.X) {
             playerState += property;
         } else if (cellState[property] === Marker.O) {
@@ -191,17 +196,27 @@ function checkWon(cellState) {
         let opponentWon = false;
 
         for (const key of winStateKeys) {
-            if (playerState.includes(key)) {
-                playerWon = true;
-            }
+            let playerCount = 0;
+            let opponentCount = 0;
 
-            if (opponentState.includes(key)) {
-                opponentWon = true;
+            for (const c of key) {
+                if (playerState.includes(c)) {
+                    playerCount++;
+                }
+
+                if (opponentState.includes(c)) {
+                    opponentCount++;
+                }
+
+                if (playerCount === 3) {
+                    playerWon = true;
+                }
+
+                if (opponentCount === 3) {
+                    opponentWon = true;
+                }
             }
         }
-
-        console.log("isPlayerWon: " + playerWon);
-        console.log("isOppWon: " + opponentWon);
 
         if (playerWon) {
             return BoardStatus.PLAYER_WON;
